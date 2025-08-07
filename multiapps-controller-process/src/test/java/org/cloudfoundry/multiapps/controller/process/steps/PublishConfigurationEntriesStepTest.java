@@ -1,10 +1,13 @@
 package org.cloudfoundry.multiapps.controller.process.steps;
 
+
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.sap.cloudfoundry.client.facade.domain.CloudMetadata;
+
 import org.apache.commons.collections4.CollectionUtils;
 import org.cloudfoundry.multiapps.common.test.TestUtil;
 import org.cloudfoundry.multiapps.common.util.JsonUtil;
+import org.cloudfoundry.multiapps.controller.client.facade.domain.CloudMetadata;
 import org.cloudfoundry.multiapps.controller.client.lib.domain.CloudApplicationExtended;
 import org.cloudfoundry.multiapps.controller.client.lib.domain.ImmutableCloudApplicationExtended;
 import org.cloudfoundry.multiapps.controller.core.auditlogging.ConfigurationEntryServiceAuditLog;
@@ -68,10 +71,9 @@ class PublishConfigurationEntriesStepTest extends SyncFlowableStepTest<PublishCo
 
     @BeforeAll
     public static void loadConfigurationEntries() {
-        existingConfigurationEntries = JsonUtil.fromJson(TestUtil.getResourceAsString("configuration-entries.json",
-                                                                                      PublishConfigurationEntriesStepTest.class),
-                                                         new TypeReference<>() {
-                                                         });
+        existingConfigurationEntries = JsonUtil.fromJson(
+            TestUtil.getResourceAsString("configuration-entries.json", PublishConfigurationEntriesStepTest.class), new TypeReference<>() {
+            });
     }
 
     @ParameterizedTest

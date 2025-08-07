@@ -267,6 +267,7 @@ public class Messages {
     public static final String SERVICE_INSTANCE_0_PLAN_UPDATE_FAILED_IGNORING_FAILURE = "Service instance: \"{0}\" plan update failed, ignoring failure...";
     public static final String SERVICE_INSTANCE_0_PARAMETERS_UPDATE_FAILED_IGNORING_FAILURE = "Service instance: \"{0}\" parameters update failed, ignoring failure...";
     public static final String SERVICE_INSTANCE_0_TAGS_UPDATE_FAILED_IGNORING_FAILURE = "Service instance: \"{0}\" tags update failed, ignoring failure...";
+    public static final String ONLY_FIRST_SERVICE_WILL_BE_CREATED = "Only the first service will be created because the provided 'service-name' fields are duplicated! All other services with the same 'service-name' will be ignored! Duplicated names: {0}";
 
     // INFO log messages
     public static final String ACQUIRING_LOCK = "Process \"{0}\" attempting to acquire lock for operation on MTA \"{1}\"";
@@ -781,6 +782,7 @@ public class Messages {
     public static final String DELETING_BACKUP_DESCRIPTORS_STORED_BEFORE_0 = "Deleting backup descriptors stored before \"{0}\"";
     public static final String DELETED_BACKUP_DESCRIPTORS_0 = "Deleted backup descriptors: {0}";
     public static final String CALCULATED_TIMEOUT_FOR_INCREMENTAL_APP_INSTANCES_UPDATE_0_SECONDS = "Calculated timeout for incremental app instances update: {0} seconds";
+    public static final String GETTING_FEATURES_FOR_APPLICATION_0 = "Getting features for application \"{0}\"";
 
     public static final String TOTAL_SIZE_OF_ALL_RESOLVED_CONTENT_0 = "Total size for all resolved content {0}";
 

@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.cloudfoundry.multiapps</groupId>
     <artifactId>multiapps-controller-parent</artifactId>
-    <version>1.194.0-SNAPSHOT</version>
+    <version>1.197.0-SNAPSHOT</version>
     <packaging>pom</packaging>
     <name>MultiApps Controller Parent</name>
     <description>Multi-Target Application (MTA) deployment service for Cloud Foundry</description>
@@ -15,13 +15,13 @@
         <sonar.organization>cloudfoundry</sonar.organization>
         <sonar.coverage.jacoco.xmlReportPaths>../multiapps-controller-coverage/target/site/jacoco-aggregate/jacoco.xml
         </sonar.coverage.jacoco.xmlReportPaths>
-        <junit.version>5.13.1</junit.version>
-        <junit-platform.version>1.13.1</junit-platform.version>
+        <junit.version>5.13.2</junit.version>
+        <junit-platform.version>1.13.2</junit-platform.version>
         <mockito.version>5.18.0</mockito.version>
         <derby.version>10.16.1.1</derby.version> <!-- Upper versions of Derby(10.17.1.0) are not compatible with Java 17 -->
         <h2.version>2.2.224</h2.version>
         <servlet-api.version>6.1.0</servlet-api.version>
-        <log4j.version>2.24.3</log4j.version>
+        <log4j.version>2.25.0</log4j.version>
         <slf4j.version>2.0.17</slf4j.version>
         <commons-io.version>2.19.0</commons-io.version>
         <commons-collections4.version>4.5.0</commons-collections4.version>
@@ -29,27 +29,28 @@
         <httpclient.version>5.5</httpclient.version>
         <httpcore.version>5.3.4</httpcore.version>
         <eclipselink.version>4.0.6</eclipselink.version>
-        <flowable.version>6.8.0</flowable.version>
+        <flowable.version>7.1.0</flowable.version>
         <mybatis.version>3.5.19</mybatis.version>
         <spring.version>6.2.8</spring.version>
-        <spring-security.version>6.5.1</spring-security.version>
+        <spring-security.version>6.5.2</spring-security.version>
         <json-smart.version>2.5.2</json-smart.version>
         <hikari.version>6.3.0</hikari.version>
         <jackson.version>2.19.1</jackson.version>
         <jackson.databind.version>2.19.1</jackson.databind.version>
         <liquibase.version>4.32.0</liquibase.version>
         <liquibase-slf4j.version>5.1.0</liquibase-slf4j.version>
-        <cloudfoundry-client.version>2.58.0</cloudfoundry-client.version>
+        <cloudfoundry-client.version>5.14.0.RELEASE</cloudfoundry-client.version>
+        <reactor-netty.version>1.2.8</reactor-netty.version>
         <swagger.version>1.6.16</swagger.version>
         <jclouds.version>2.7.0</jclouds.version>
         <guava.version>33.4.8-jre</guava.version>
         <resilience4j.version>2.3.0</resilience4j.version>
         <immutables.version>2.10.1</immutables.version>
-        <micrometer.version>1.15.0</micrometer.version>
+        <micrometer.version>1.15.1</micrometer.version>
         <aliyun-sdk-oss.version>3.18.2</aliyun-sdk-oss.version>
         <auto-service.version>1.1.1</auto-service.version>
         <commons-codec.version>1.18.0</commons-codec.version>
-        <multiapps.version>2.34.0</multiapps.version>
+        <multiapps.version>2.37.0</multiapps.version>
         <java-cfenv.version>3.4.0</java-cfenv.version>
         <jaxb-api.version>4.0.2</jaxb-api.version>
         <jaxb-core.version>4.0.5</jaxb-core.version>
@@ -58,6 +59,8 @@
         <jakarta.annotation-api.version>3.0.0</jakarta.annotation-api.version>
         <bouncycastle.version>2.1.9</bouncycastle.version>
         <apache.compress.version>1.27.1</apache.compress.version>
+        <tika-core.version>3.2.0</tika-core.version>
+        <commons-logging.version>1.3.1</commons-logging.version>
     </properties>
     <modules>
         <module>multiapps-controller-client</module>
@@ -164,7 +167,7 @@
                         <!-- Surefire excludes nested classes by default, so we need to explicitly specify that nothing should 
                             be excluded. -->
                         <excludes>
-                            <exclude/>
+                            <exclude>**/*IntegrationTest</exclude>
                         </excludes>
                         <runOrder>random</runOrder>
                     </configuration>
@@ -224,11 +227,11 @@
                     <artifactId>swagger-maven-plugin</artifactId>
                     <version>3.1.8</version>
                 </plugin>
-                <!-- https://mvnrepository.com/artifact/org.sonatype.plugins/nexus-staging-maven-plugin -->
+                <!-- https://mvnrepository.com/artifact/org.sonatype.central/central-publishing-maven-plugin -->
                 <plugin>
-                    <groupId>org.sonatype.plugins</groupId>
-                    <artifactId>nexus-staging-maven-plugin</artifactId>
-                    <version>1.6.13</version>
+                    <groupId>org.sonatype.central</groupId>
+                    <artifactId>central-publishing-maven-plugin</artifactId>
+                    <version>0.8.0</version>
                 </plugin>
                 <!-- https://mvnrepository.com/artifact/org.sonarsource.scanner.maven/sonar-maven-plugin -->
                 <plugin>
@@ -466,6 +469,12 @@
                 <groupId>org.slf4j</groupId>
                 <artifactId>slf4j-jdk14</artifactId>
                 <version>${slf4j.version}</version>
+            </dependency>
+            <!-- https://mvnrepository.com/artifact/org.apache.tika/tika-core -->
+            <dependency>
+                <groupId>org.apache.tika</groupId>
+                <artifactId>tika-core</artifactId>
+                <version>${tika-core.version}</version>
             </dependency>
             <!-- https://mvnrepository.com/artifact/commons-io/commons-io -->
             <dependency>
@@ -815,11 +824,18 @@
                 <artifactId>java-cfenv-jdbc</artifactId>
                 <version>${java-cfenv.version}</version>
             </dependency>
-            <!-- https://mvnrepository.com/artifact/com.sap.cloud.lm.sl/cloudfoundry-client-facade -->
+            <!-- https://mvnrepository.com/artifact/org.cloudfoundry/cloudfoundry-client-reactor -->
             <dependency>
-                <groupId>com.sap.cloud.lm.sl</groupId>
-                <artifactId>cloudfoundry-client-facade</artifactId>
+                <groupId>org.cloudfoundry</groupId>
+                <artifactId>cloudfoundry-client-reactor</artifactId>
                 <version>${cloudfoundry-client.version}</version>
+            </dependency>
+            <!-- Transitive dependency from cloudfoundry-client. Pin the version, because the one they're using (1.0.3) contains vulnerabilities -->
+            <!-- https://mvnrepository.com/artifact/io.projectreactor.netty/reactor-netty -->
+            <dependency>
+                <groupId>io.projectreactor.netty</groupId>
+                <artifactId>reactor-netty</artifactId>
+                <version>${reactor-netty.version}</version>
             </dependency>
             <!-- https://mvnrepository.com/artifact/org.cloudfoundry.multiapps/multiapps-common -->
             <dependency>
@@ -897,14 +913,14 @@
     </dependencyManagement>
 
     <distributionManagement>
-        <snapshotRepository>
-            <id>ossrh</id>
-            <url>https://s01.oss.sonatype.org/content/repositories/snapshots/</url>
-        </snapshotRepository>
-        <repository>
-            <id>ossrh</id>
-            <url>https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/</url>
-        </repository>
+        <!--<snapshotRepository>
+            <id>central</id>
+            <url>https://central.sonatype.com/repository/maven-snapshots/</url>
+        </snapshotRepository>-->
+        <!--<repository>
+            <id>central</id>
+            <url>https://central.sonatype.com</url>
+        </repository>-->
     </distributionManagement>
 
     <repositories>
@@ -926,13 +942,16 @@
             <build>
                 <plugins>
                     <plugin>
-                        <groupId>org.sonatype.plugins</groupId>
-                        <artifactId>nexus-staging-maven-plugin</artifactId>
+                        <groupId>org.sonatype.central</groupId>
+                        <artifactId>central-publishing-maven-plugin</artifactId>
                         <extensions>true</extensions>
                         <configuration>
-                            <serverId>ossrh</serverId>
-                            <nexusUrl>https://s01.oss.sonatype.org/</nexusUrl>
-                            <autoReleaseAfterClose>false</autoReleaseAfterClose>
+                            <publishingServerId>central</publishingServerId>
+                            <centralBaseUrl>https://central.sonatype.com</centralBaseUrl>
+                            <autoPublish>true</autoPublish>
+                            <waitUntil>published</waitUntil>
+                            <waitMaxTime>3600</waitMaxTime>
+                            <waitPollingInterval>60</waitPollingInterval>
                         </configuration>
                     </plugin>
                     <plugin>

@@ -13,11 +13,13 @@
         "mta_id": "c3ec54a0d8eadd33b207c005ab4825ba"
       }
     },
+    "moduleName": "framework",
     "memory": 0,
     "diskQuota": 0,
     "instances": 0,
     "staging": {
-      "buildpacks": []
+      "buildpacks": [],
+      "appFeatures": {}
     },
     "routes": [
       {
@@ -35,7 +37,6 @@
       "DEPLOY_ATTRIBUTES": "{\"dependency-type\":\"soft\"}",
       "plugins": "[{\"name\":\"plugins.0\",\"plugin_name\":\"foo\",\"url\":\"https://foo.localhost\"},{\"name\":\"plugins.1\",\"plugin_name\":\"bar\",\"url\":\"https://bar.localhost\"}]"
     },
-    "moduleName": "framework",
     "idleRoutes": [],
     "bindingParameters": {},
     "tasks": [],

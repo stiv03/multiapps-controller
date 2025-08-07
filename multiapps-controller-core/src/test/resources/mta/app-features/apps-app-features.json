@@ -1,0 +1,58 @@
+[
+  {
+    "name": "feature-app",
+    "v3Metadata": {
+      "annotations": {
+        "mta_id": "app-features-test",
+        "mta_version": "0.0.1",
+        "mta_module": "{\"name\":\"feature-app\"}",
+        "mta_module_provided_dependencies": "[\"feature-app\"]",
+        "mta_bound_services": "[]"
+      },
+      "labels": {
+        "mta_id": "4572c447a636063e61744a390feb4077"
+      }
+    },
+    "moduleName": "feature-app",
+    "memory": 0,
+    "diskQuota": 0,
+    "instances": 0,
+    "staging": {
+      "buildpacks": [],
+      "appFeatures": {
+        "featureA": true,
+        "featureB": false,
+        "featureC": true
+      }
+    },
+    "routes": [
+      {
+        "appsUsingRoute": 0,
+        "domain": {
+          "name": "cfapps.neo.ondemand.com"
+        },
+        "host": "feature-app",
+        "path": "",
+        "url": "feature-app.cfapps.neo.ondemand.com"
+      }
+    ],
+    "services": [],
+    "env": {
+      "DEPLOY_ATTRIBUTES": "{\"dependency-type\":\"soft\"}"
+    },
+    "idleRoutes": [],
+    "bindingParameters": {},
+    "tasks": [],
+    "serviceKeysToInject": [],
+    "restartParameters": {
+      "shouldRestartOnVcapAppChange": true,
+      "shouldRestartOnVcapServicesChange": true,
+      "shouldRestartOnUserProvidedChange": true
+    },
+    "attributesUpdateStrategy": {
+      "shouldKeepExistingEnv": false,
+      "shouldKeepExistingServiceBindings": false,
+      "shouldKeepExistingRoutes": false
+    }
+  }
+]
